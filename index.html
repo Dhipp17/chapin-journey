@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapin + Salesforce | Your Future-State Journey</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar" id="top">
+  <a class="brand" href="#top" aria-label="Salesforce and Chapin">
+    <span class="sf-wordmark">salesforce</span>
+    <span class="plus">+</span>
+    <img class="chapin-logo" src="assets/chapin-logo.png" alt="Chapin" width="120" height="46">
+  </a>
+  <nav class="jump" aria-label="Page sections">
+    <a href="#why">Why Salesforce</a>
+    <a href="#proof">Results</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#journey">Your journey</a>
+    <a href="#platform">Platform</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <button class="ask-btn" id="open-ask" type="button"><span class="spark" aria-hidden="true"></span>Ask</button>
+</header>
+
+<section class="hero">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="hero-inner">
+    <p class="eyebrow">Future-state vision &middot; Prepared for the Chapin leadership team</p>
+    <h1>One connected business, from the first trade-show lead to the last warranty claim.</h1>
+    <p class="lede">Chapin has made things people count on since 1884. Here is what the next chapter looks like with Salesforce, built from what your sales, service, marketing and IT teams told us.</p>
+
+    <form class="hero-ask" id="hero-ask" autocomplete="off">
+      <span class="spark" aria-hidden="true"></span>
+      <input id="hero-q" type="text" placeholder="Ask anything about your journey: forecasting, RingCentral, trade shows, ROI..." aria-label="Ask a question">
+      <button type="submit">Ask</button>
+    </form>
+    <div class="suggest" id="hero-suggest" aria-label="Suggested questions"></div>
+
+    <div class="hero-stats">
+      <div><strong data-count="20000" data-suffix="+">20,000+</strong><span>manufacturers run on Salesforce</span></div>
+      <div><strong data-count="354" data-suffix="%">354%</strong><span>ROI seen by manufacturers on Manufacturing Cloud</span></div>
+      <div><strong>~13 wks</strong><span>proposed build with your implementation partner</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="section why reveal">
+  <p class="kicker" id="why-eyebrow"></p>
+  <h2 id="why-headline"></h2>
+  <div class="why-grid">
+    <div class="why-text" id="why-text"></div>
+    <aside class="why-pull" id="why-pull"></aside>
+  </div>
+  <div class="pillars" id="pillars"></div>
+</section>
+
+<section id="proof" class="proof reveal">
+  <div class="section">
+    <p class="kicker light">The proof</p>
+    <h2>What manufacturers have achieved on Salesforce</h2>
+    <p class="sub light">Real figures from manufacturers running Salesforce today, and clearly marked projections where customers have shared them.</p>
+    <div id="proof-groups"></div>
+    <p class="note" id="proof-note"></p>
+  </div>
+</section>
+
+<section id="roadmap" class="section reveal">
+  <p class="kicker">The road to go-live</p>
+  <h2>Thirteen weeks, built with your team</h2>
+  <p class="sub">Proposed plan with your implementation partner. Dates assume a mid-to-late November start and move with signature.</p>
+  <ol class="roadmap" id="roadmap-list"></ol>
+</section>
+
+<section id="journey" class="section reveal">
+  <p class="kicker">Your journey</p>
+  <h2>A day in the life, one capability at a time</h2>
+  <p class="sub">Pick an area. Each tab walks through a day at Chapin once Salesforce is live.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div id="panel" class="panel" role="tabpanel" tabindex="0"></div>
+</section>
+
+<section id="platform" class="section reveal">
+  <p class="kicker">Platform overview</p>
+  <h2>See the platform behind the journey</h2>
+  <p class="sub">Highlights from the Manufacturing Cloud and Marketing Cloud overview. Select a slide to open it.</p>
+  <div class="filters" id="slide-filters" role="group" aria-label="Filter slides">
+    <button class="fbtn on" data-f="all">All</button>
+    <button class="fbtn" data-f="mfg">Manufacturing Cloud</button>
+    <button class="fbtn" data-f="mkt">Marketing Cloud</button>
+  </div>
+  <div class="slide-grid" id="slide-grid"></div>
+</section>
+
+<section id="faq" class="section reveal">
+  <p class="kicker">Questions, answered</p>
+  <h2>Frequently asked questions</h2>
+  <p class="sub">Answers as published on salesforce.com for Manufacturing Cloud, Sales, Service, forecasting and sales agreements, Slack, MuleSoft and Premier Success. Each links to its source.</p>
+  <div class="faq" id="faq-list"></div>
+</section>
+
+<section id="next" class="section next reveal">
+  <p class="kicker">Next steps</p>
+  <h2>What happens next</h2>
+  <div class="cards" id="next-list"></div>
+</section>
+
+<footer>
+  <p>Prepared by your Salesforce account team for Chapin. Illustrative future-state scenarios based on discovery conversations; scope, timing and capabilities are confirmed in the final statement of work. Customer results are as reported by Salesforce and its customers. Product names and marks belong to their respective owners.</p>
+</footer>
+
+<!-- Ask drawer -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="false" aria-label="Ask about your Chapin journey" hidden>
+  <header class="drawer-head">
+    <div>
+      <div class="d-title"><span class="spark" aria-hidden="true"></span> Ask about your journey</div>
+      <div class="d-sub">Answers drawn from Chapin program materials and the Salesforce platform overview.</div>
+    </div>
+    <button class="x" id="close-ask" type="button" aria-label="Close">&times;</button>
+  </header>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="d-suggest" id="d-suggest"></div>
+  <form class="d-form" id="d-form" autocomplete="off">
+    <input id="d-q" type="text" placeholder="Ask a question..." aria-label="Your question">
+    <button type="submit" aria-label="Send">&#10148;</button>
+  </form>
+</aside>
+
+<script src="data.js"></script>
+<script src="why.js"></script>
+<script src="faqs.js"></script>
+<script src="slides.js"></script>
+<script src="render.js"></script>
+<script src="agent.js"></script>
+</body>
+</html>
