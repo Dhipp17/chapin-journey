@@ -229,3 +229,27 @@ const PATH = [
   ["Oct 13", "Demo feedback + partner scoping", true], ["Oct 19", "Pricing + SOW review", true], ["Oct 28", "Working-team sync", true],
   ["Next", "Decision", false], ["Then", "Kickoff with Acquis", false], ["Target", "Live before February", false]
 ];
+
+/* Vision: today vs. with Salesforce, by layer. Box types: pain (today), plain, core (Salesforce product), dark (data layer), slack. */
+const VISION = {
+  today: { title: "Today", tag: "Many disconnected tools", rows: [
+    ["Orders", [["Emailed POs", "80–120 a day keyed by hand in season", "pain"], ["EDI", "Locks ERP tables 15–20 min per post", "pain"]]],
+    ["ERP", [["Infor SyteLine", "Golden record; data flows out, little comes back", ""]]],
+    ["Customers", [["No CRM", "Contacts and history live with individuals", "pain"], ["Spreadsheets", "Pricing, forecasts and price increases", "pain"]]],
+    ["Partners", [["Home-built rep portal", "8 of 11 agencies log in", "pain"]]],
+    ["Marketing", [["Mailchimp", "Registrations exported by hand", "pain"], ["Website forms", "Gravity Forms on WordPress", ""], ["Trade-show leads", "On paper or in someone's head", "pain"]]],
+    ["Service", [["Outlook + RingCentral", "No case history or SLAs; live chat removed", "pain"]]],
+    ["Insight", [["Power BI", "The only shared view, built from ERP data", ""]]]
+  ], notes: ["Forecasts are rebuilt by hand every week", "A price increase takes 3 days and still misses accounts", "No one sees the whole customer: sales, service and marketing each hold a piece"] },
+  future: { title: "With Salesforce", tag: "One customer record, many teams", rows: [
+    ["Orders", [["MuleSoft document processing", "Reads emailed POs and creates orders", "core"], ["EDI", "Unchanged, orders visible in Salesforce", ""]]],
+    ["ERP", [["Infor SyteLine", "Stays the system of record; two-way sync via MuleSoft", ""]]],
+    ["Unify", [["Customer 360 on the Salesforce Platform", "Accounts, ship-tos, contacts, agreements and orders on one record, with Data 360 underneath", "dark"]]],
+    ["Sell & serve", [["Manufacturing Cloud: Sales + Service", "Sales agreements, account forecasts, cases, registered products and warranty", "core"]]],
+    ["Marketing", [["Marketing Cloud", "Segments, journeys and campaign ROI on the same customer data; web forms feed in directly", "core"]]],
+    ["Phone & email", [["RingCentral + Outlook", "Screen pop and two-way email and calendar sync", ""]]],
+    ["Where people work", [["Agentforce", "AI answers, summaries and drafts in every app", "core"], ["Slack (proposed)", "Account channels, alerts and approvals", "slack"]]],
+    ["Grow next", [["Phase 2 on the same data", "Revenue Cloud rebates, partner portal for 11 agencies, web agent", ""]]],
+    ["Insight", [["Dashboards + Power BI", "Everyday answers in Salesforce; Power BI stays for deep analysis", ""]]]
+  ], notes: ["One trusted customer record for every team", "SyteLine stays the golden record, always in sync", "Fewer hand-offs: orders, prices and leads move on their own", "Each new system or business connects once, on the same platform"] }
+};

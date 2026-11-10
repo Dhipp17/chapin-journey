@@ -161,6 +161,14 @@ function openTab(id) { renderChapter(id); $("#journey").scrollIntoView({ behavio
 const startId = location.hash.slice(1);
 renderChapter(TABS.some(t => t.id === startId) ? startId : TABS[0].id, { hash: false });
 
+/* ---------- Vision ---------- */
+(function () {
+  const col = (c, cls) => `<div class="vcol ${cls}"><div class="vhead"><h3>${c.title}</h3><span class="vtag">${c.tag}</span></div>
+    ${c.rows.map(row => `<div class="vrow"><div class="vlabel">${row[0]}</div><div class="vboxes">${row[1].map(b => `<div class="vbox ${b[2]}"><b>${b[0]}</b><span>${b[1]}</span></div>`).join("")}</div></div>`).join("")}
+    <ul class="vnotes">${c.notes.map(n => `<li>${n}</li>`).join("")}</ul></div>`;
+  $("#vgrid").innerHTML = col(VISION.today, "today") + col(VISION.future, "future");
+})();
+
 /* ---------- Simple by design ---------- */
 $("#simple-h").textContent = SIMPLE.headline;
 $("#simple-sub").textContent = SIMPLE.sub;
@@ -278,17 +286,23 @@ $$(".segb").forEach(b => b.addEventListener("click", () => {
   $$(".segb").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-selected", x === b); });
   $("#pane-slides").hidden = b.dataset.pane !== "slides"; $("#pane-faq").hidden = b.dataset.pane !== "faq";
 }));
-let lastGroup = "";
-$("#faq-list").innerHTML = FAQS.map(f => {
-  const head = f.group !== lastGroup ? `<h3 class="fgroup" data-g="${f.group}">${f.group}</h3>` : ""; lastGroup = f.group;
-  const s = SRC[f.src];
-  return `${head}<details class="fq" data-g="${f.group}"><summary>${f.q}</summary><p>${f.a}</p>${s ? `<a class="srclink fsrc" href="${s.url}" target="_blank" rel="noopener">Source: ${s.label} &#8599;</a>` : ""}</details>`;
+/* FAQs: collapsed topic groups; each question opens on click */
+const FAQ_GROUPS = [...new Set(FAQS.map(f => f.group))];
+$("#faq-list").innerHTML = FAQ_GROUPS.map(g => {
+  const items = FAQS.filter(f => f.group === g);
+  return `<details class="fgrp" data-g="${g}"><summary><span>${g}</span><small>${items.length} questions</small></summary><div class="fgrp-body">${items.map(f => {
+    const s = SRC[f.src];
+    return `<details class="fq" data-g="${g}"><summary>${f.q}</summary><p>${f.a}</p>${s ? `<a class="srclink fsrc" href="${s.url}" target="_blank" rel="noopener">Source: ${s.label} &#8599;</a>` : ""}</details>`;
+  }).join("")}</div></details>`;
 }).join("") + `<p class="faq-none" hidden>No matching questions. Try Ask for a Chapin-specific answer.</p>`;
 $("#faq-search").addEventListener("input", e => {
-  const q = e.target.value.toLowerCase().trim(); const vis = new Set();
-  $$(".fq").forEach(d => { const m = !q || d.textContent.toLowerCase().includes(q); d.hidden = !m; if (m) vis.add(d.dataset.g); if (q && m) d.open = false; });
-  $$(".fgroup").forEach(h => h.hidden = !vis.has(h.dataset.g));
-  $(".faq-none").hidden = vis.size > 0;
+  const q = e.target.value.toLowerCase().trim(); let any = false;
+  $$(".fgrp").forEach(g => {
+    let n = 0;
+    $$(".fq", g).forEach(d => { const m = !q || d.textContent.toLowerCase().includes(q); d.hidden = !m; if (m) n++; if (!q) d.open = false; });
+    g.hidden = n === 0; g.open = !!q && n > 0; if (n) any = true;
+  });
+  $(".faq-none").hidden = any;
 });
 
 /* ---------- Reveal + count-up ---------- */
