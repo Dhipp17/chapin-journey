@@ -11,14 +11,14 @@
 
 <header class="topbar" id="top">
   <a class="brand" href="#top" aria-label="Salesforce and Chapin">
-    <span class="sf-wordmark">salesforce</span>
+    <img class="sf-logo" src="assets/salesforce-logo.png" alt="Salesforce" width="68" height="48">
     <span class="plus">+</span>
     <img class="chapin-logo" src="assets/chapin-logo.png" alt="Chapin" width="120" height="46">
   </a>
   <nav class="jump" aria-label="Page sections">
+    <a href="#why">Why Salesforce</a>
     <a href="#journey">The journey</a>
     <a href="#simple">Simple by design</a>
-    <a href="#why">Why Salesforce</a>
     <a href="#plan">The plan</a>
     <a href="#deeper">Go deeper</a>
   </nav>
@@ -26,7 +26,6 @@
 </header>
 
 <section class="hero">
-  <div class="orb o1"></div><div class="orb o2"></div>
   <div class="hero-inner">
     <p class="eyebrow">Prepared for the Chapin leadership team</p>
     <h1>One connected business, from the first trade-show hello to the last warranty claim.</h1>
@@ -41,18 +40,24 @@
   </div>
 </section>
 
-<!-- 0. What we heard -->
-<section id="whynow" class="whynow">
+<!-- 1. Why Salesforce -->
+<section id="why" class="why reveal">
   <div class="section">
-    <p class="kicker light" id="wn-kicker"></p>
-    <h2 id="wn-title"></h2>
-    <div class="wn-stats" id="wn-stats"></div>
-    <p class="wn-line" id="wn-line"></p>
-    <div class="wn-ctx" id="wn-ctx"></div>
+    <p class="kicker" id="why-eyebrow"></p>
+    <h2 id="why-headline"></h2>
+    <div class="why-grid">
+      <div class="why-text"><div id="why-text"></div><p class="why-closer" id="why-pull"></p></div>
+      <div class="mfg-square" id="mfg-square"></div>
+    </div>
+    <div class="pillars" id="pillars"></div>
+    <h3 class="proof-h">What manufacturers have achieved on Salesforce</h3>
+    <div class="pcards" id="proof-cards"></div>
+    <button class="more-btn" id="proof-more" type="button">See all results</button>
+    <p class="note" id="proof-note"></p>
   </div>
 </section>
 
-<!-- 1. The journey -->
+<!-- 2. The journey -->
 <section id="journey" class="section">
   <p class="kicker">The journey</p>
   <h2>Follow one customer through Chapin</h2>
@@ -61,7 +66,7 @@
   <div class="chapter" id="chapter" role="tabpanel" tabindex="-1"></div>
 </section>
 
-<!-- 2. Simple by design -->
+<!-- 3. Simple by design -->
 <section id="simple" class="simple reveal">
   <div class="section">
     <p class="kicker">Simple by design</p>
@@ -76,25 +81,6 @@
   </div>
 </section>
 
-<!-- 3. Why Salesforce + proof -->
-<section id="why" class="section why reveal">
-  <p class="kicker" id="why-eyebrow"></p>
-  <h2 id="why-headline"></h2>
-  <div class="why-grid">
-    <div class="why-text" id="why-text"></div>
-    <aside class="why-pull" id="why-pull"></aside>
-  </div>
-  <div class="pillars" id="pillars"></div>
-</section>
-<section id="proof" class="proof reveal">
-  <div class="section">
-    <p class="kicker light">The proof</p>
-    <h2>What manufacturers have achieved on Salesforce</h2>
-    <div class="pcards" id="proof-cards"></div>
-    <button class="more-btn" id="proof-more" type="button">See all results</button>
-    <p class="note" id="proof-note"></p>
-  </div>
-</section>
 
 <!-- 4. The 13-week plan -->
 <section id="plan" class="section reveal">

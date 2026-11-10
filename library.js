@@ -9,12 +9,14 @@ const DECKS = {
   co: "Commercial Operations",
   ch: "Channel Engagement",
   ad: "Additional Product Information",
+  pv: "Premier Value Drivers",
+  ps: "Premier Success Plan datasheet",
   sl: "Meet Slack"
 };
 
 const LIB_CATS = [
   ["plan", "Chapin plan"], ["sales", "Sales & forecasting"], ["channel", "Channel & partners"],
-  ["service", "Service & warranty"], ["marketing", "Marketing"], ["slack", "Slack"], ["value", "Platform & proof"]
+  ["service", "Service & warranty"], ["marketing", "Marketing"], ["slack", "Slack"], ["premier", "Premier Success"], ["value", "Platform & proof"]
 ];
 
 const FL_NOTE = "Features marked with a future release are not currently available and may not be delivered on time or at all. Purchase decisions should be based on features that are currently available.";
@@ -186,6 +188,20 @@ const LIB = [
     points: ["Connects people, apps and 100+ tools in one place", "AI agents automate service, HR and client operations"], stats: [["30%", "of service cases resolved autonomously"], ["$2M", "annual service cost savings"]] },
   { id: "sl-34", cat: "slack", title: "Anthropic scales smarter with Slack",
     points: ["Integrated Salesforce channels and Claude in Slack for summaries, Q&A and daily workflows", "Agentforce automates manual tasks"], stats: [["60%", "faster complex deal cycles"], ["~$4.5M", "saved annually"]] },
+
+  /* ---------- Premier Success ---------- */
+  { id: "pv-1", cat: "premier", title: "Premier value drivers", sub: "Get more value from Salesforce with these Premier features",
+    points: ["Onboarding: match your goals with Salesforce on day one; an Onboarding Specialist builds your personalized Success Path", "Success Reviews: validate your plans with Salesforce experts, up to two times a year", "Expert Coaching: learn at your own pace on any topic or cloud in 1-to-1 sessions", "Health Checks & Assessments: keep the system running smoothly, with expert recommendations", "Instructor-led training: 25% off courses for admins, developers, architects and analysts", "Technical Support: 24/7/365 Help Agent, 1-hour phone, chat and online response for business-stopping issues, plus Developer Support for custom code"] },
+  { id: "ps-2", cat: "premier", title: "Meet the Premier Success Plan", sub: "Start strong and get more value from Salesforce every day",
+    points: ["Success Reviews, Expert Coaching and 24/7/365 Technical Support with faster response times", "\u201CI consider having Premier like having an extra team member.\u201D Salesforce Administrator, ecobee"],
+    stats: [["115%", "ROI for Premier customers"], ["$1.2M", "increased business impact with improved technical health and adoption"], ["95%", "reduced mean time to issue resolution"]],
+    note: "Source: The Total Economic Impact\u2122 of the Salesforce Premier Success Plan, a commissioned study by Forrester Consulting, September 2024. Results are for a composite organization." },
+  { id: "ps-3", cat: "premier", title: "A team of experts dedicated to your success",
+    points: ["Personalized path to adoption: an Onboarding Specialist matches your goals to Salesforce and builds a Success Path, with Expert Coaching, workshops and 25% off courses", "System health: bi-annual Success Reviews of your Customer Success Score, plus 1-to-1 coaching on Agentforce use cases", "Issues solved anytime: Help Agent, a 1-hour initial response for critical issues, and developer reviews of up to 200 lines of code", "\u201CPremier is something that we should've had from the start.\u201D Director of Business Systems, ChowNow"] },
+  { id: "ps-4", cat: "premier", title: "Premier Success Plan features",
+    points: ["Onboarding, Success Path and Success Reviews (up to 2x a year)", "Health Checks & Assessments and Expert Coaching", "Instructor-led training: 60\u201390 minute workshops and courses at 25% off", "Certification discounts, Trailblazer Community, Trailhead and Salesforce Help", "Developer Support for up to 200 lines of custom code; 24/7/365 Technical Support with a 1-hour response for critical issues"] },
+  { id: "ps-5", cat: "premier", title: "Success Plans comparison: Standard, Premier, Signature",
+    points: ["Standard: Help Agent, Trailhead, Trailblazer Community and knowledge articles", "Premier adds onboarding, Customer Success Score, Success Path, Success Reviews up to 2x a year, health checks, Expert Coaching, workshops, 25% off courses and certifications, and 200 lines of code review", "Signature adds a Customer Success Manager, proactive monitoring, specialized architect reviews, key event management, an annual technical health review, Success Reviews up to 4x a year, 35% off certifications and 5,000 lines of code review"] },
 
   /* ---------- Platform & proof ---------- */
   { id: "mf-1", cat: "value", title: "Salesforce for Manufacturing: unified experiences across your value chain", sub: "Your commercial operating system, powered by the #1 AI CRM",

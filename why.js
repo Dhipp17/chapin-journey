@@ -24,6 +24,8 @@ const SIMPLE = {
 };
 
 /* ---------- Why Salesforce ---------- */
+const MFG_COUNT = { value: 20000, suffix: "+", label: "manufacturers run on Salesforce", sub: "The #1 AI CRM for manufacturing", src: "Source: salesforce.com/manufacturing" };
+
 const WHY = {
   eyebrow: "Why Salesforce",
   headline: "A company founded in 1884 deserves a platform built for what comes next.",
@@ -47,7 +49,10 @@ const PROOF = [
   { value: 60, suffix: "%", label: "of warranty claims automated", who: "A global manufacturer on Salesforce", tag: "Achieved", featured: true },
   { value: 21, suffix: "%", label: "faster case wrap-up", who: "Manufacturing Customer Success Survey", tag: "Achieved", featured: true },
   { value: 32, suffix: "%", label: "increase in overall marketing ROI", who: "Salesforce FY26 Customer Success Metrics", tag: "Achieved", featured: true },
-  { value: 20000, suffix: "+", label: "manufacturers run on Salesforce", who: "Salesforce for Manufacturing", tag: "Scale", featured: true },
+  { value: 490, suffix: "", label: "annual hours saved per sales rep", who: "Salesforce Manufacturing Cloud business value overview", tag: "Achieved", featured: true },
+  { value: 130, suffix: "", label: "processes automated", who: "Kawasaki Engines", tag: "Achieved" },
+  { value: 29, suffix: "", label: "systems consolidated", who: "Chargeurs PCC", tag: "Achieved" },
+  { value: 50, suffix: "%", label: "less manual scheduling", who: "MTI", tag: "Achieved" },
   { value: 30, suffix: "%", label: "lower cost to acquire new customers", who: "Salesforce FY26 Customer Success Metrics", tag: "Achieved" },
   { value: 33, suffix: "%", label: "increase in customer engagement and in customer lifetime value", who: "Salesforce FY26 Customer Success Metrics", tag: "Achieved" },
   { value: 65, suffix: "%", label: "self-service rate with AI-guided troubleshooting", who: "Fisher & Paykel", tag: "Projected" },

@@ -38,7 +38,8 @@ function premierBlock(p) {
   return `<div class="premier">
     <h4 class="blk-h">What's in the Premier Success Plan</h4>
     <div class="pgroups">${p.groups.map(g => `<div class="pg"><h5>${g[0]}</h5>${g[1].map(f => `<div class="pf"><b>${f[0]}</b><span>${f[1]}</span></div>`).join("")}</div>`).join("")}</div>
-    <figure class="pquote"><blockquote>${p.quote[0]}</blockquote><figcaption>${p.quote[1]}</figcaption></figure>
+    <div class="pquotes">${[p.quote, ...(p.quotes2 || [])].map(q => `<figure class="pquote"><blockquote>${q[0]}</blockquote><figcaption>${q[1]}</figcaption></figure>`).join("")}</div>
+    ${p.slides ? `<div class="pslides">${p.slides.map(id => slideCard(libById(id), true)).join("")}</div>` : ""}
     <h4 class="blk-h">Three levels of Salesforce Success Plans</h4>
     <div class="tiers">${p.tiers.map(t => `<div class="tier${t[0] === "Premier" ? " on" : ""}">${t[0] === "Premier" ? '<span class="tier-flag">Chapin</span>' : ""}<h5>${t[0]}</h5><small>${t[1]}</small><ul>${t[2].map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>
     <a class="srclink" href="${p.src}" target="_blank" rel="noopener">Premier Success Plan on salesforce.com &#8599;</a>
@@ -153,13 +154,6 @@ function openTab(id) { renderChapter(id); $("#journey").scrollIntoView({ behavio
 const startId = location.hash.slice(1);
 renderChapter(TABS.some(t => t.id === startId) ? startId : TABS[0].id, { hash: false });
 
-/* ---------- What we heard ---------- */
-$("#wn-kicker").textContent = WHYNOW.kicker;
-$("#wn-title").textContent = WHYNOW.title;
-$("#wn-stats").innerHTML = WHYNOW.stats.map(s => `<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("");
-$("#wn-line").innerHTML = `${WHYNOW.line} <button type="button" class="link-btn" data-slide="${WHYNOW.slide}">See the readback &rarr;</button>`;
-$("#wn-ctx").innerHTML = WHYNOW.context.map(c => `<span>${c}</span>`).join("");
-
 /* ---------- Simple by design ---------- */
 $("#simple-h").textContent = SIMPLE.headline;
 $("#simple-sub").textContent = SIMPLE.sub;
@@ -171,7 +165,8 @@ $("#simple-tasks").innerHTML = SIMPLE.tasks.map((t, i) => `<div class="task"><sp
 $("#why-eyebrow").textContent = WHY.eyebrow;
 $("#why-headline").textContent = WHY.headline;
 $("#why-text").innerHTML = WHY.paras.map(p => `<p>${p}</p>`).join("");
-$("#why-pull").innerHTML = `<div class="pull-mark" aria-hidden="true">&ldquo;</div><p>${WHY.closer}</p>`;
+$("#why-pull").textContent = WHY.closer;
+$("#mfg-square").innerHTML = `<b data-count="${MFG_COUNT.value}" data-suffix="${MFG_COUNT.suffix}">${MFG_COUNT.value.toLocaleString()}${MFG_COUNT.suffix}</b><span>${MFG_COUNT.label}</span><small>${MFG_COUNT.sub}</small><em>${MFG_COUNT.src}</em>`;
 $("#pillars").innerHTML = PILLARS.map(p => `<article class="pillar">${svg(p.icon, "pi")}<h3>${p.title}</h3><p>${p.text}</p></article>`).join("");
 const pcard = i => `<div class="pcard ${i.tag.toLowerCase()}${i.featured ? "" : " extra"}"${i.featured ? "" : " hidden"}><span class="ptag">${i.tag}</span>
   <div class="pval"><span data-count="${i.value}" data-suffix="${i.suffix}">${i.value.toLocaleString()}${i.suffix}</span></div>
@@ -246,7 +241,7 @@ function showSlide() {
     ${s.stats ? `<div class="sv-stats">${s.stats.map(x => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>` : ""}
     ${s.points && s.points.length ? `<ul class="sv-pts">${s.points.map(p => `<li>${p}</li>`).join("")}</ul>` : ""}
     ${s.status ? `<div class="sv-status">${s.status.map(x => `<span><b>${x[0]}</b><em class="${/GA/.test(x[1]) ? "ga" : "soon"}">${x[1]}</em></span>`).join("")}</div>` : ""}
-    ${s.fl ? `<p class="sv-fl">${FL_NOTE}</p>` : ""}
+    ${s.note ? `<p class="sv-fl">${s.note}</p>` : ""}${s.fl ? `<p class="sv-fl">${FL_NOTE}</p>` : ""}
     <div class="sv-foot"><span>${libDeck(s)} \u00b7 slide ${s.id.split("-")[1]}</span>${svList.length > 1 ? `<span>${svIdx + 1} of ${svList.length}</span>` : ""}</div>
     <button type="button" class="ask-inline sv-ask" data-q="${s.title.replace(/"/g, "&quot;")}"><span class="spark" aria-hidden="true"></span>Ask about this</button>`;
   $("#sv-prev").hidden = $("#sv-next").hidden = svList.length < 2;
@@ -292,6 +287,6 @@ function countUp(el) {
 }
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (!e.isIntersecting) return; e.target.classList.add("in");
-  $$(".pcard:not([hidden]) [data-count]", e.target).forEach(countUp); io.unobserve(e.target);
+  $$(".pcard:not([hidden]) [data-count], .mfg-square [data-count]", e.target).forEach(countUp); io.unobserve(e.target);
 }), { threshold: .1 });
 $$(".reveal").forEach(el => io.observe(el));
