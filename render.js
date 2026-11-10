@@ -26,7 +26,14 @@ $(".chapin-logo").addEventListener("error", e => {
 $("#hero-suggest").innerHTML = SUGGESTED.slice(0, 4).map(s => `<button type="button" class="sug" data-q="${s}">${s}</button>`).join("");
 
 /* ---------- Journey ---------- */
+/* Hero chapter shortcuts + any link with data-chapter opens that chapter */
+document.addEventListener("click", e => {
+  const c = e.target.closest("[data-chapter]"); if (!c) return;
+  e.preventDefault(); openTab(c.dataset.chapter);
+});
+
 $("#persona").textContent = PERSONA;
+$("#hero-chapters").innerHTML = TABS.map((t, i) => `<span class="hchip" data-chapter="${t.id}">${i + 1}. ${t.verb}</span>`).join("");
 const jmap = $("#jmap"), chapterEl = $("#chapter");
 jmap.innerHTML = TABS.map((t, i) => `<li><button type="button" class="stop" role="tab" id="stop-${t.id}" data-id="${t.id}" aria-selected="false">
   <span class="sn">${svg(t.id)}<em>${i + 1}</em></span><b>${t.verb}</b><small>${t.label}${t.badge ? " · proposed" : ""}</small></button></li>`).join("");
