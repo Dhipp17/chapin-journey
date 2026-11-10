@@ -105,7 +105,11 @@ function showStep(i) {
   const s = t.steps[i];
   const scr = $("#stage-screen");
   scr.classList.remove("in"); void scr.offsetWidth;
-  scr.innerHTML = mockScreen(s.ui); scr.classList.add("in");
+  const file = `assets/screens/${t.id}-${i + 1}.png`;
+  scr.innerHTML = `<div class="shot-wrap"><img class="shot" src="${file}" alt="${s.title}"></div>`;
+  const img = $("img", scr);
+  img.addEventListener("error", () => { scr.innerHTML = mockScreen(s.ui); }, { once: true });
+  scr.classList.add("in");
   $("#stage-cap").innerHTML = `<div class="cap-top"><span class="cap-time">${s.time}</span><span class="cap-who">${s.who}</span><span class="ease">${s.ease}</span></div>
     <h4>${s.title}</h4><p>${s.text}</p>`;
   $$(".stp", chapterEl).forEach((b, k) => { b.classList.toggle("on", k === i); b.classList.toggle("done", k < i); b.setAttribute("aria-current", k === i ? "step" : "false"); });

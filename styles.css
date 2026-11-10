@@ -111,7 +111,9 @@ button{font-family:var(--font)}
 .stp:hover:not(.on){background:#F4F7FA}
 .stage{position:sticky;top:86px;background:linear-gradient(160deg,#EEF6FF,#F7F4FE);border:1px solid #DCE8F5;border-radius:18px;padding:22px}
 .stage-screen{min-height:300px}
-.stage-screen.in .mock{animation:pop .4s ease}
+.stage-screen.in .mock,.stage-screen.in .shot-wrap{animation:pop .4s ease}
+.shot-wrap{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(3,45,96,.18),0 2px 6px rgba(3,45,96,.08);border:1px solid #D7E2EE}
+.shot{display:block;width:100%;height:auto}
 @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985)}}
 .stage-cap{margin-top:16px}
 .cap-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
