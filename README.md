@@ -12,9 +12,9 @@ Static site, no build step. Open `index.html` or host on GitHub Pages.
 | `render.js`, `agent.js` | Page rendering and the Ask assistant |
 
 ## Publish on GitHub Pages
-1. Create a **private** repo (Pages on private repos needs GitHub Pro/Team/Enterprise).
-2. Push these files to `main`.
-3. Settings > Pages > Source: `main` / root.
+Fastest: with the GitHub CLI installed and signed in (`brew install gh`, then `gh auth login`), run `./publish.sh` from this folder. It creates a **private** repo, pushes, enables Pages, and prints the repo and site links.
+
+Manual: create a private repo on github.com, then `git remote add origin <repo-url> && git push -u origin main`, then Settings > Pages > Source: `main` / root. (Pages on private repos needs GitHub Pro/Team/Enterprise.)
 
 ## Logos
 - Chapin: `assets/chapin-logo.png` (included). Falls back to a text wordmark if missing.
