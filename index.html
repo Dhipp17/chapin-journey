@@ -102,17 +102,17 @@
   <p class="kicker">Go deeper</p>
   <h2>Explore the platform behind the journey</h2>
   <div class="seg" role="tablist" aria-label="Go deeper">
-    <button class="segb on" data-pane="slides" role="tab" aria-selected="true">Platform library</button>
-    <button class="segb" data-pane="faq" role="tab" aria-selected="false">FAQs</button>
+    <button class="segb on" data-pane="faq" role="tab" aria-selected="true">FAQs</button>
+    <button class="segb" data-pane="slides" role="tab" aria-selected="false">Platform library</button>
   </div>
-  <div class="pane" id="pane-slides">
+  <div class="pane" id="pane-slides" hidden>
     <div class="lib-bar">
       <div class="filters" id="slide-filters" role="group" aria-label="Filter slides"></div>
       <input class="faq-search lib-search" id="lib-search" type="search" placeholder="Search slides: warranty, rebates, Slackbot..." aria-label="Search slides">
     </div>
     <div class="slide-grid" id="slide-grid"></div>
   </div>
-  <div class="pane" id="pane-faq" hidden>
+  <div class="pane" id="pane-faq">
     <input class="faq-search" id="faq-search" type="search" placeholder="Search FAQs: forecasting, Slack, MuleSoft, Premier..." aria-label="Search FAQs">
     <div class="faq" id="faq-list"></div>
   </div>

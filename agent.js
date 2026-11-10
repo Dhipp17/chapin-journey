@@ -132,7 +132,8 @@ async function ask(q, opts = {}) {
     const e = top.e;
     const head = document.createElement("div"); head.className = "ans-title"; head.textContent = e.title; mb.appendChild(head);
     await typeInto(mb, e.answer);
-    if (e.src) mb.insertAdjacentHTML("beforeend", srcLink(e.src, "Learn more"));
+    const rel = [...new Set([...(KB_LINKS[e.id] || []), ...(e.src ? [e.src] : [])])].filter(k => SRC[k]).slice(0, 3);
+    if (rel.length) mb.insertAdjacentHTML("beforeend", `<div class="rel"><div class="rel-h">Related on salesforce.com</div>${rel.map(k => `<a class="rel-a${SRC[k].demo ? " demo" : ""}" href="${SRC[k].url}" target="_blank" rel="noopener">${SRC[k].label} &#8599;</a>`).join("")}</div>`);
     if (ftop) {
       const f = ftop.f;
       mb.insertAdjacentHTML("beforeend", `<div class="qa"><div class="qa-h">Quick answer from salesforce.com</div><b>${f.q}</b><p>${f.a}</p>${srcLink(f.src, "Source")}</div>`);

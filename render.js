@@ -168,7 +168,7 @@ $("#why-text").innerHTML = WHY.paras.map(p => `<p>${p}</p>`).join("");
 $("#why-pull").textContent = WHY.closer;
 $("#mfg-square").innerHTML = `<b data-count="${MFG_COUNT.value}" data-suffix="${MFG_COUNT.suffix}">${MFG_COUNT.value.toLocaleString()}${MFG_COUNT.suffix}</b><span>${MFG_COUNT.label}</span><small>${MFG_COUNT.sub}</small><em>${MFG_COUNT.src}</em>`;
 $("#pillars").innerHTML = PILLARS.map(p => `<article class="pillar">${svg(p.icon, "pi")}<h3>${p.title}</h3><p>${p.text}</p></article>`).join("");
-const pcard = i => `<div class="pcard ${i.tag.toLowerCase()}${i.featured ? "" : " extra"}"${i.featured ? "" : " hidden"}><span class="ptag">${i.tag}</span>
+const pcard = i => `<div class="pcard ${i.tag.toLowerCase()}${i.featured ? "" : " extra"}"${i.featured ? "" : " hidden"}>
   <div class="pval"><span data-count="${i.value}" data-suffix="${i.suffix}">${i.value.toLocaleString()}${i.suffix}</span></div>
   <p class="plabel">${i.label}</p><p class="pwho">${i.who}</p></div>`;
 $("#proof-cards").innerHTML = PROOF.map(pcard).join("");
@@ -206,20 +206,27 @@ function slideCard(s, compact) {
     <span class="lthumb"><img src="${libImg(s, true)}" alt="" loading="lazy"></span>
     <span class="lbody"><em>${(LIB_CATS.find(c => c[0] === s.cat) || [, ""])[1]}</em><b>${s.title}</b></span></button>`;
 }
-let libFilter = "all", libList = LIB;
+let libFilter = null, libList = [];
 function renderLib() {
   const q = ($("#lib-search").value || "").toLowerCase().trim();
-  libList = LIB.filter(s => (libFilter === "all" || s.cat === libFilter) &&
+  if (!libFilter && !q) {
+    libList = [];
+    $("#slide-grid").innerHTML = `<p class="lib-prompt">Choose a topic above to see its slides, or search the whole library.</p>`;
+    return;
+  }
+  libList = LIB.filter(s => (!libFilter || s.cat === libFilter) &&
     (!q || [s.title, s.sub || "", ...(s.points || []), ...(s.stats || []).flat(), ...(s.status || []).flat()].join(" ").toLowerCase().includes(q)));
   $("#slide-grid").innerHTML = libList.length ? libList.map(s => slideCard(s)).join("") : `<p class="faq-none">No slides match. Try Ask for a Chapin-specific answer.</p>`;
 }
-$("#slide-filters").innerHTML = [["all", "All"], ...LIB_CATS].map(c => `<button class="fbtn${c[0] === "all" ? " on" : ""}" data-f="${c[0]}">${c[1]} <small>${c[0] === "all" ? LIB.length : LIB.filter(s => s.cat === c[0]).length}</small></button>`).join("");
+$("#slide-filters").innerHTML = LIB_CATS.map(c => `<button class="fbtn" data-f="${c[0]}">${c[1]} <small>${LIB.filter(s => s.cat === c[0]).length}</small></button>`).join("");
 $("#slide-filters").addEventListener("click", e => {
   const b = e.target.closest(".fbtn"); if (!b) return;
-  $$(".fbtn").forEach(x => x.classList.toggle("on", x === b)); libFilter = b.dataset.f; renderLib();
+  $("#lib-search").value = "";
+  libFilter = b.dataset.f;
+  $$(".fbtn").forEach(x => x.classList.toggle("on", x === b)); renderLib();
 });
 $("#lib-search").addEventListener("input", () => {
-  if ($("#lib-search").value.trim() && libFilter !== "all") { libFilter = "all"; $$(".fbtn").forEach(x => x.classList.toggle("on", x.dataset.f === "all")); }
+  if ($("#lib-search").value.trim()) { libFilter = null; $$(".fbtn").forEach(x => x.classList.remove("on")); }
   renderLib();
 });
 renderLib();

@@ -133,6 +133,19 @@ const KB = [
     slides: ["ov-4"], follow: ["How does it connect to our ERP?", "Can AI help our service team?"] }
 ];
 
+
+/* Related salesforce.com pages and demos shown under each Ask answer */
+const KB_LINKS = {
+  overview: ["mc", "mfgdemo"], why: ["mfg", "mfgdemo", "stories"], results: ["mfg", "kawasaki", "endress"],
+  forecast: ["fcst", "mcs", "salesdemo"], agreements: ["sa", "mcs", "salesdemo"], pricing: ["mcs", "salesdemo"], accounts: ["mcs", "salesdemo"],
+  salesplanning: ["mcs", "salesdemo"], concierge: ["mc", "salesdemo"], reports: ["mc", "fcsta"],
+  service: ["mcsv", "servicedemo"], ringcentral: ["mcsv", "servicedemo"], knowledge: ["mcsv", "servicedemo"], ai: ["ai", "mfgdemo"],
+  marketing: ["mktg", "mktdemo"], tradeshow: ["mktg", "mktdemo"], pricecomms: ["mktg", "mktdemo"],
+  slack: ["slack", "slackm", "slackdemo"], mulesoft: ["mule", "anypoint"], po: ["mule", "anypoint"], data: ["mule", "anypoint"],
+  premier: ["prem", "sp"], sow: ["prem", "mc"], timeline: ["prem", "mc"], salesforcego: ["prem", "sp"], trust: ["slackm", "mule"],
+  scope: ["mc", "crm"], phase2: ["crm", "mc"], channelmgmt: ["crm", "mfgdemo"], recommend: ["mc", "mfgdemo", "mktg"], whynow: ["mfg", "mfgdemo"]
+};
+
 const SUGGESTED = [
   "Why Salesforce for Chapin?",
   "What results do manufacturers see?",

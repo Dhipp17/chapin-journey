@@ -3,6 +3,17 @@
    Omitted on purpose: "How much does Manufacturing Cloud cost?" (pricing). */
 
 const SRC = {
+  mfgdemo: { url: "https://www.salesforce.com/manufacturing/demos/agentforce-manufacturing-cloud-demo/", label: "Demo: Agentforce + Manufacturing Cloud", demo: true },
+  salesdemo: { url: "https://www.salesforce.com/manufacturing/demos/agentforce-manufacturing-cloud-for-sales-demo/", label: "Demo: Manufacturing Cloud for Sales", demo: true },
+  servicedemo: { url: "https://www.salesforce.com/manufacturing/demos/agentforce-manufacturing-cloud-for-service-demo/", label: "Demo: Manufacturing Cloud for Service", demo: true },
+  slackdemo: { url: "https://www.salesforce.com/slack/demos/overview/", label: "Demo: Slack and Salesforce", demo: true },
+  mktdemo: { url: "https://www.salesforce.com/marketing/demos/10-click-demo-agentforce-marketing/", label: "Tour: Marketing Cloud", demo: true },
+  mktg: { url: "https://www.salesforce.com/marketing/", label: "Marketing Cloud" },
+  anypoint: { url: "https://www.salesforce.com/mulesoft/anypoint-platform/", label: "MuleSoft Anypoint Platform" },
+  crm: { url: "https://www.salesforce.com/manufacturing/channel-revenue-management/", label: "Channel Revenue Management" },
+  stories: { url: "https://www.salesforce.com/customer-stories/", label: "Salesforce customer stories" },
+  kawasaki: { url: "https://www.salesforce.com/customer-stories/kawasaki/", label: "Customer story: Kawasaki" },
+  endress: { url: "https://www.salesforce.com/customer-stories/endress-and-hauser/", label: "Customer story: Endress+Hauser" },
   mfg:    { url: "https://www.salesforce.com/manufacturing/", label: "Salesforce for Manufacturing" },
   mc:     { url: "https://www.salesforce.com/manufacturing/cloud/", label: "Manufacturing Cloud" },
   mcs:    { url: "https://www.salesforce.com/manufacturing/cloud/sales/", label: "Manufacturing Cloud for Sales" },

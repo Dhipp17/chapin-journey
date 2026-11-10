@@ -55,10 +55,10 @@ const PROOF = [
   { value: 50, suffix: "%", label: "less manual scheduling", who: "MTI", tag: "Achieved" },
   { value: 30, suffix: "%", label: "lower cost to acquire new customers", who: "Salesforce FY26 Customer Success Metrics", tag: "Achieved" },
   { value: 33, suffix: "%", label: "increase in customer engagement and in customer lifetime value", who: "Salesforce FY26 Customer Success Metrics", tag: "Achieved" },
-  { value: 65, suffix: "%", label: "self-service rate with AI-guided troubleshooting", who: "Fisher & Paykel", tag: "Projected" },
-  { value: 212, suffix: "%", label: "ROI over three years from service and sales agents", who: "Endress+Hauser", tag: "Projected" },
-  { value: 30, suffix: "%", label: "support productivity gain, with 47,500 inquiries a year handled by agents", who: "Endress+Hauser", tag: "Projected" },
-  { value: 28, suffix: "%", label: "better customer-support efficiency (and 20% for field technicians)", who: "Luminator", tag: "Projected" }
+  { value: 65, suffix: "%", label: "expected self-service rate with AI-guided troubleshooting", who: "Fisher & Paykel", tag: "Projected" },
+  { value: 212, suffix: "%", label: "projected ROI over three years from service and sales agents", who: "Endress+Hauser", tag: "Projected" },
+  { value: 30, suffix: "%", label: "expected support productivity gain, with 47,500 inquiries a year handled by agents", who: "Endress+Hauser", tag: "Projected" },
+  { value: 28, suffix: "%", label: "projected improvement in customer-support efficiency (20% for field technicians)", who: "Luminator", tag: "Projected" }
 ];
 
-const PROOF_NOTE = "Results as reported by Salesforce and its customers; yours will vary. “Projected” figures are customers’ stated expectations. A Chapin-specific business case comes from the ROI working session. Sources: salesforce.com/manufacturing, Salesforce customer stories (Endress+Hauser, Luminator, Fisher & Paykel, Kawasaki) and the Salesforce Manufacturing + Marketing Cloud overview.";
+const PROOF_NOTE = "Results as reported by Salesforce and its customers; yours will vary. Expected and projected figures are customers\u2019 stated expectations. A Chapin-specific business case comes from the ROI working session. Sources: salesforce.com/manufacturing, Salesforce customer stories (Endress+Hauser, Luminator, Fisher & Paykel, Kawasaki) and the Salesforce Manufacturing + Marketing Cloud overview.";
