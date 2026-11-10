@@ -5,8 +5,9 @@ Static site, no build step. Open `index.html` or host on GitHub Pages.
 | File | What it holds |
 |---|---|
 | `index.html`, `styles.css` | Layout and Salesforce-branded styling |
-| `data.js` | Roadmap and the six journey tabs |
-| `why.js` | "Why Salesforce" statement, pillars, proof points |
+| `data.js` | The six journey chapters (steps, mock-screen specs), 13-week plan, next steps |
+| `mocks.js` | Illustrative mock screens drawn in HTML/CSS |
+| `why.js` | Simple by design, Why Salesforce, proof points |
 | `faqs.js` | salesforce.com FAQs with source links (also searched by Ask) |
 | `slides.js` | Overview-deck slide cards and the Ask knowledge base |
 | `render.js`, `agent.js` | Page rendering and the Ask assistant |

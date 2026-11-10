@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chapin + Salesforce | Your Future-State Journey</title>
+<title>Chapin + Salesforce | Your Journey</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -16,38 +16,56 @@
     <img class="chapin-logo" src="assets/chapin-logo.png" alt="Chapin" width="120" height="46">
   </a>
   <nav class="jump" aria-label="Page sections">
+    <a href="#journey">The journey</a>
+    <a href="#simple">Simple by design</a>
     <a href="#why">Why Salesforce</a>
-    <a href="#proof">Results</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#journey">Your journey</a>
-    <a href="#platform">Platform</a>
-    <a href="#faq">FAQ</a>
+    <a href="#plan">The plan</a>
+    <a href="#deeper">Go deeper</a>
   </nav>
   <button class="ask-btn" id="open-ask" type="button"><span class="spark" aria-hidden="true"></span>Ask</button>
 </header>
 
 <section class="hero">
-  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="orb o1"></div><div class="orb o2"></div>
   <div class="hero-inner">
-    <p class="eyebrow">Future-state vision &middot; Prepared for the Chapin leadership team</p>
-    <h1>One connected business, from the first trade-show lead to the last warranty claim.</h1>
-    <p class="lede">Chapin has made things people count on since 1884. Here is what the next chapter looks like with Salesforce, built from what your sales, service, marketing and IT teams told us.</p>
-
+    <p class="eyebrow">Prepared for the Chapin leadership team</p>
+    <h1>One connected business, from the first trade-show hello to the last warranty claim.</h1>
+    <p class="lede">Walk through what a day at Chapin looks like with Salesforce, built from what your sales, service, marketing and IT teams told us.</p>
+    <a class="start" href="#journey">Start the journey <span aria-hidden="true">&darr;</span></a>
     <form class="hero-ask" id="hero-ask" autocomplete="off">
       <span class="spark" aria-hidden="true"></span>
-      <input id="hero-q" type="text" placeholder="Ask anything about your journey: forecasting, RingCentral, trade shows, ROI..." aria-label="Ask a question">
+      <input id="hero-q" type="text" placeholder="Or ask anything: forecasting, RingCentral, trade shows, ROI..." aria-label="Ask a question">
       <button type="submit">Ask</button>
     </form>
     <div class="suggest" id="hero-suggest" aria-label="Suggested questions"></div>
+  </div>
+</section>
 
-    <div class="hero-stats">
-      <div><strong data-count="20000" data-suffix="+">20,000+</strong><span>manufacturers run on Salesforce</span></div>
-      <div><strong data-count="354" data-suffix="%">354%</strong><span>ROI seen by manufacturers on Manufacturing Cloud</span></div>
-      <div><strong>~13 wks</strong><span>proposed build with your implementation partner</span></div>
+<!-- 1. The journey -->
+<section id="journey" class="section">
+  <p class="kicker">The journey</p>
+  <h2>Follow one customer through Chapin</h2>
+  <p class="sub" id="persona"></p>
+  <ol class="jmap" id="jmap" role="tablist" aria-label="Journey chapters"></ol>
+  <div class="chapter" id="chapter" role="tabpanel" tabindex="-1"></div>
+</section>
+
+<!-- 2. Simple by design -->
+<section id="simple" class="simple reveal">
+  <div class="section">
+    <p class="kicker">Simple by design</p>
+    <h2 id="simple-h"></h2>
+    <p class="sub" id="simple-sub"></p>
+    <figure class="simple-quote" id="simple-quote"></figure>
+    <div class="scards" id="simple-cards"></div>
+    <div class="tasks">
+      <h3>Everyday tasks, one step each</h3>
+      <div class="trow" id="simple-tasks"></div>
     </div>
   </div>
 </section>
 
+<!-- 3. Why Salesforce + proof -->
 <section id="why" class="section why reveal">
   <p class="kicker" id="why-eyebrow"></p>
   <h2 id="why-headline"></h2>
@@ -57,59 +75,51 @@
   </div>
   <div class="pillars" id="pillars"></div>
 </section>
-
 <section id="proof" class="proof reveal">
   <div class="section">
     <p class="kicker light">The proof</p>
     <h2>What manufacturers have achieved on Salesforce</h2>
-    <p class="sub light">Real figures from manufacturers running Salesforce today, and clearly marked projections where customers have shared them.</p>
-    <div id="proof-groups"></div>
+    <div class="pcards" id="proof-cards"></div>
+    <button class="more-btn" id="proof-more" type="button">See all results</button>
     <p class="note" id="proof-note"></p>
   </div>
 </section>
 
-<section id="roadmap" class="section reveal">
-  <p class="kicker">The road to go-live</p>
-  <h2>Thirteen weeks, built with your team</h2>
-  <p class="sub">Proposed plan with your implementation partner. Dates assume a mid-to-late November start and move with signature.</p>
-  <ol class="roadmap" id="roadmap-list"></ol>
+<!-- 4. The 13-week plan -->
+<section id="plan" class="section reveal">
+  <p class="kicker">The plan</p>
+  <h2>From signature to go-live in about 13 weeks</h2>
+  <p class="sub">Built with Acquis, your implementation partner, with Premier Success alongside from day one.</p>
+  <div class="gantt" id="gantt"></div>
+  <p class="gnote" id="gantt-note"></p>
+  <h3 class="next-h">What happens next</h3>
+  <ol class="next" id="next-list"></ol>
 </section>
 
-<section id="journey" class="section reveal">
-  <p class="kicker">Your journey</p>
-  <h2>A day in the life, one capability at a time</h2>
-  <p class="sub">Pick an area. Each tab walks through a day at Chapin once Salesforce is live.</p>
-  <div class="tabs" role="tablist" id="tabs"></div>
-  <div id="panel" class="panel" role="tabpanel" tabindex="0"></div>
-</section>
-
-<section id="platform" class="section reveal">
-  <p class="kicker">Platform overview</p>
-  <h2>See the platform behind the journey</h2>
-  <p class="sub">Highlights from the Manufacturing Cloud and Marketing Cloud overview. Select a slide to open it.</p>
-  <div class="filters" id="slide-filters" role="group" aria-label="Filter slides">
-    <button class="fbtn on" data-f="all">All</button>
-    <button class="fbtn" data-f="mfg">Manufacturing Cloud</button>
-    <button class="fbtn" data-f="mkt">Marketing Cloud</button>
+<!-- 5. Go deeper -->
+<section id="deeper" class="section reveal">
+  <p class="kicker">Go deeper</p>
+  <h2>Platform slides and answers to common questions</h2>
+  <div class="seg" role="tablist" aria-label="Go deeper">
+    <button class="segb on" data-pane="slides" role="tab" aria-selected="true">Platform slides</button>
+    <button class="segb" data-pane="faq" role="tab" aria-selected="false">FAQs</button>
   </div>
-  <div class="slide-grid" id="slide-grid"></div>
-</section>
-
-<section id="faq" class="section reveal">
-  <p class="kicker">Questions, answered</p>
-  <h2>Frequently asked questions</h2>
-  <p class="sub">Answers as published on salesforce.com for Manufacturing Cloud, Sales, Service, forecasting and sales agreements, Slack, MuleSoft and Premier Success. Each links to its source.</p>
-  <div class="faq" id="faq-list"></div>
-</section>
-
-<section id="next" class="section next reveal">
-  <p class="kicker">Next steps</p>
-  <h2>What happens next</h2>
-  <div class="cards" id="next-list"></div>
+  <div class="pane" id="pane-slides">
+    <div class="filters" id="slide-filters" role="group" aria-label="Filter slides">
+      <button class="fbtn on" data-f="all">All</button>
+      <button class="fbtn" data-f="mfg">Manufacturing Cloud</button>
+      <button class="fbtn" data-f="mkt">Marketing Cloud</button>
+    </div>
+    <div class="slide-grid" id="slide-grid"></div>
+  </div>
+  <div class="pane" id="pane-faq" hidden>
+    <input class="faq-search" id="faq-search" type="search" placeholder="Search FAQs: forecasting, Slack, MuleSoft, Premier..." aria-label="Search FAQs">
+    <div class="faq" id="faq-list"></div>
+  </div>
 </section>
 
 <footer>
-  <p>Prepared by your Salesforce account team for Chapin. Illustrative future-state scenarios based on discovery conversations; scope, timing and capabilities are confirmed in the final statement of work. Customer results are as reported by Salesforce and its customers. Product names and marks belong to their respective owners.</p>
+  <p>Prepared by your Salesforce account team for Chapin. Screens are illustrative, and customer names in them are fictional. Scope, timing and capabilities are confirmed in the final statement of work. Customer results are as reported by Salesforce and its customers. Product names and marks belong to their respective owners.</p>
 </footer>
 
 <!-- Ask drawer -->
@@ -118,7 +128,7 @@
   <header class="drawer-head">
     <div>
       <div class="d-title"><span class="spark" aria-hidden="true"></span> Ask about your journey</div>
-      <div class="d-sub">Answers drawn from Chapin program materials and the Salesforce platform overview.</div>
+      <div class="d-sub">Answers from Chapin program materials, salesforce.com and the platform overview.</div>
     </div>
     <button class="x" id="close-ask" type="button" aria-label="Close">&times;</button>
   </header>
@@ -134,6 +144,7 @@
 <script src="why.js"></script>
 <script src="faqs.js"></script>
 <script src="slides.js"></script>
+<script src="mocks.js"></script>
 <script src="render.js"></script>
 <script src="agent.js"></script>
 </body>

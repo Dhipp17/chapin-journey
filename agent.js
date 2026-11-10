@@ -144,7 +144,7 @@ async function ask(q, opts = {}) {
       mb.appendChild(lab); mb.appendChild(wrap);
     }
     const t = TABS.find(x => x.id === e.tab);
-    if (t) actions.innerHTML += `<button type="button" class="act" data-tab="${t.id}">See the ${t.label} day in the life &rarr;</button>`;
+    if (t) actions.innerHTML += `<button type="button" class="act" data-tab="${t.id}">Open the ${t.verb} chapter &rarr;</button>`;
     if (second && second.score >= top.score * 0.6) actions.innerHTML += `<button type="button" class="act ghost" data-kb="${second.e.id}">Related: ${second.e.title}</button>`;
     setSuggest(e.follow || SUGGESTED);
   }
