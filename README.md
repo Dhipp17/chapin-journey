@@ -9,7 +9,8 @@ Static site, no build step. Open `index.html` or host on GitHub Pages.
 | `mocks.js` | Illustrative mock screens drawn in HTML/CSS |
 | `why.js` | Simple by design, Why Salesforce, proof points |
 | `faqs.js` | salesforce.com FAQs with source links (also searched by Ask) |
-| `slides.js` | Overview-deck slide cards and the Ask knowledge base |
+| `library.js` | Platform library: 98 slides from the Chapin decks, with in-page detail |
+| `slides.js` | Ask knowledge base |
 | `render.js`, `agent.js` | Page rendering and the Ask assistant |
 
 ## Publish on GitHub Pages
@@ -24,8 +25,8 @@ Manual: create a private repo on github.com, then `git remote add origin <repo-u
 ## Ask assistant
 Answers come from the Chapin knowledge base in `slides.js` plus the salesforce.com FAQs in `faqs.js`. If a question matches a salesforce.com FAQ more closely, that answer leads with a link to its source page; otherwise the Chapin answer leads and the best FAQ appears as a quick answer underneath. It uses keyword retrieval with no external calls, so it is deterministic and safe to demo offline. To add or change answers, edit the `KB` array. To power it with a live model, replace the `search()` call in `agent.js` with a call to your own server-side endpoint; never put an API key in this repo.
 
-## Slide images
-Cards show a condensed text version of each overview slide and link to the slide in Google Slides (viewers need access to the deck). To show the real slide image, export the slide as PNG to `assets/slides/<id>.png` using the ids in `slides.js` (for example `roi.png`); the card uses it automatically.
+## Slides and screenshots
+Library slides live in `assets/slides/` (full size) and `assets/slides/t/` (thumbnails), named by deck and page (for example `co-8.jpg` is Commercial Operations slide 8). Clicking a slide opens it on the page with its content; nothing links out to the decks. Journey screenshots live in `assets/screens/`; see `SHOTLIST.md` for which steps use real screens and how to add more.
 
 ## Content notes
 - No pricing or contract terms are included.

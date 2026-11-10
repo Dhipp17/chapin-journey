@@ -33,17 +33,21 @@ jmap.innerHTML = TABS.map((t, i) => `<li><button type="button" class="stop" role
 
 let cur = { id: TABS[0].id, step: 0 };
 
-function compareBlock(c) {
-  const col = (x, cls) => `<div class="ccol ${cls}"><h4>${x.title}</h4><p class="csub">${x.sub}</p>
-      <dl>${x.items.map(i => `<dt>${i[0]}</dt><dd>${i[1]}</dd>`).join("")}</dl>
-      ${x.src ? `<a class="srclink" href="${x.src}" target="_blank" rel="noopener">Read more on salesforce.com &#8599;</a>` : ""}</div>`;
+function premierBlock(p) {
   const list = (title, arr, cls = "") => `<div class="mini ${cls}"><h5>${title}</h5><ul>${arr.map(i => `<li>${i}</li>`).join("")}</ul></div>`;
-  return `<div class="compare">
-    <h4 class="blk-h">Premier Success vs. Acquis implementation</h4>
-    <div class="ccols">${col(c.acquis, "acq")}${col(c.premier, "prem")}</div>
-    <details class="more" open><summary>What's in the Acquis statement of work</summary>
-      <div class="sow">${c.sow.map(s => list(s[0], s[1])).join("")}</div>
-      <div class="sow">${list("What Chapin provides", c.chapin, "chapin")}${list("Governance", c.governance, "gov")}${list("Not in phase one", c.notIncluded, "out")}</div>
+  return `<div class="premier">
+    <h4 class="blk-h">What's in the Premier Success Plan</h4>
+    <div class="pgroups">${p.groups.map(g => `<div class="pg"><h5>${g[0]}</h5>${g[1].map(f => `<div class="pf"><b>${f[0]}</b><span>${f[1]}</span></div>`).join("")}</div>`).join("")}</div>
+    <figure class="pquote"><blockquote>${p.quote[0]}</blockquote><figcaption>${p.quote[1]}</figcaption></figure>
+    <h4 class="blk-h">Three levels of Salesforce Success Plans</h4>
+    <div class="tiers">${p.tiers.map(t => `<div class="tier${t[0] === "Premier" ? " on" : ""}">${t[0] === "Premier" ? '<span class="tier-flag">Chapin</span>' : ""}<h5>${t[0]}</h5><small>${t[1]}</small><ul>${t[2].map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>
+    <a class="srclink" href="${p.src}" target="_blank" rel="noopener">Premier Success Plan on salesforce.com &#8599;</a>
+    <details class="more"><summary>Your implementation partner: Acquis</summary>
+      <p class="acq-note">${p.acquisNote}</p>
+      <dl class="acq-dl">${p.acquis.items.map(i => `<dt>${i[0]}</dt><dd>${i[1]}</dd>`).join("")}</dl>
+      <h5>What's in the Acquis statement of work</h5>
+      <div class="sow">${p.sow.map(s => list(s[0], s[1])).join("")}</div>
+      <div class="sow">${list("What Chapin provides", p.chapin, "chapin")}${list("Governance", p.governance, "gov")}${list("Not in phase one", p.notIncluded, "out")}</div>
     </details></div>`;
 }
 
@@ -62,6 +66,7 @@ function renderChapter(id, opts = {}) {
       <h3>${t.title}</h3>
       <p>${t.intro}</p>
     </div>
+    ${t.stats ? `<div class="ch-stats">${t.stats.map(x => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}${t.statsNote ? `<small>${t.statsNote}</small>` : ""}</div>` : ""}
     <div class="ba">
       <div class="ba-toggle" role="group" aria-label="Compare today and with Salesforce">
         <button type="button" class="bt" data-ba="today">Today</button>
@@ -82,7 +87,7 @@ function renderChapter(id, opts = {}) {
         </div>
       </div>
     </div>
-    ${t.compare ? compareBlock(t.compare) : ""}
+    ${t.premier ? premierBlock(t.premier) : ""}
     ${t.quotes.length ? `<div class="quotes">${t.quotes.map(q => `<blockquote>${q[0]}<cite>${q[1]}</cite></blockquote>`).join("")}</div>` : ""}
     <div class="ch-foot">
       <div class="outcomes">${t.outcomes.map(o => `<span class="outcome">${o}</span>`).join("")}</div>
@@ -105,13 +110,14 @@ function showStep(i) {
   const s = t.steps[i];
   const scr = $("#stage-screen");
   scr.classList.remove("in"); void scr.offsetWidth;
-  const file = `assets/screens/${t.id}-${i + 1}.png`;
-  scr.innerHTML = `<div class="shot-wrap"><img class="shot" src="${file}" alt="${s.title}"></div>`;
-  const img = $("img", scr);
-  img.addEventListener("error", () => { scr.innerHTML = mockScreen(s.ui); }, { once: true });
+  const shot = s.shot || `${t.id}-step${i + 1}`;
+  {
+    scr.innerHTML = `<div class="shot-wrap"><img class="shot" src="assets/screens/${shot}.png" alt="${s.title}"><span class="real-tag">Product screen</span></div>`;
+    $("img", scr).addEventListener("error", () => { scr.innerHTML = mockScreen(s.ui); }, { once: true });
+  }
   scr.classList.add("in");
   $("#stage-cap").innerHTML = `<div class="cap-top"><span class="cap-time">${s.time}</span><span class="cap-who">${s.who}</span><span class="ease">${s.ease}</span></div>
-    <h4>${s.title}</h4><p>${s.text}</p>`;
+    <h4>${s.title}</h4><p>${s.text}</p>${s.slide && libById(s.slide) ? `<button type="button" class="cap-slide" data-slide="${s.slide}">See it in the deck: ${libById(s.slide).title} &rarr;</button>` : ""}`;
   $$(".stp", chapterEl).forEach((b, k) => { b.classList.toggle("on", k === i); b.classList.toggle("done", k < i); b.setAttribute("aria-current", k === i ? "step" : "false"); });
   $$("#pdots i").forEach((d, k) => d.classList.toggle("on", k === i));
   $("#st-prev").disabled = i === 0;
@@ -147,6 +153,13 @@ function openTab(id) { renderChapter(id); $("#journey").scrollIntoView({ behavio
 const startId = location.hash.slice(1);
 renderChapter(TABS.some(t => t.id === startId) ? startId : TABS[0].id, { hash: false });
 
+/* ---------- What we heard ---------- */
+$("#wn-kicker").textContent = WHYNOW.kicker;
+$("#wn-title").textContent = WHYNOW.title;
+$("#wn-stats").innerHTML = WHYNOW.stats.map(s => `<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("");
+$("#wn-line").innerHTML = `${WHYNOW.line} <button type="button" class="link-btn" data-slide="${WHYNOW.slide}">See the readback &rarr;</button>`;
+$("#wn-ctx").innerHTML = WHYNOW.context.map(c => `<span>${c}</span>`).join("");
+
 /* ---------- Simple by design ---------- */
 $("#simple-h").textContent = SIMPLE.headline;
 $("#simple-sub").textContent = SIMPLE.sub;
@@ -171,6 +184,15 @@ $("#proof-more").addEventListener("click", e => {
   e.target.textContent = show ? "Show fewer" : "See all results";
 });
 
+/* ---------- Plan: phases + path ---------- */
+$("#phases").innerHTML = `<div class="ph1"><span class="ph-tag">Phase 1 \u00b7 Recommended</span><h4>${PHASES.p1.title}</h4>
+  <div class="ph-items">${PHASES.p1.items.map(i => `<button type="button" class="ph-item" data-slide="${i[2]}"><b>${i[0]}</b><span>${i[1]}</span><em>Details &rarr;</em></button>`).join("")}</div>
+  <div class="ph-conn"><small>Connected to</small>${PHASES.p1.connected.map(c => `<span>${c}</span>`).join("")}</div></div>
+  <div class="ph2"><span class="ph-tag two">Phase 2 \u00b7 Roadmap</span><h4>${PHASES.p2.title}</h4>
+  <ul>${PHASES.p2.items.map(i => `<li><b>${i[0]}</b><span>${i[1]}</span></li>`).join("")}</ul>
+  <button type="button" class="link-btn" data-slide="${PHASES.p2.slide}">See the Phase 2 slide &rarr;</button></div>`;
+$("#path").innerHTML = PATH.map(p => `<li class="${p[2] ? "done" : "todo"}"><i></i><b>${p[0]}</b><span>${p[1]}</span></li>`).join("");
+
 /* ---------- Plan (Gantt) ---------- */
 (function () {
   const W = GANTT.weeks;
@@ -184,20 +206,65 @@ $("#next-list").innerHTML = NEXT.map((n, i) => `<li><span class="nn">${i + 1}</s
 
 /* ---------- Go deeper: slides + FAQ ---------- */
 function slideCard(s, compact) {
-  const stats = s.stats ? `<div class="sstats">${s.stats.map(x => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>` : "";
-  return `<a class="scard ${s.cloud}${compact ? " compact" : ""}" href="${slideUrl(s)}" target="_blank" rel="noopener" data-id="${s.id}">
-    <img class="sshot" src="assets/slides/${s.id}.png" alt="" loading="lazy" onerror="this.remove()">
-    <div class="sbody"><span class="stag">${s.cloud === "mkt" ? "Marketing Cloud" : "Manufacturing Cloud"}</span>
-      <h4>${s.title}</h4>${stats}
-      <ul>${s.points.slice(0, compact ? 2 : 4).map(p => `<li>${p}</li>`).join("")}</ul>
-      <span class="sfoot">Overview deck · slide ${s.n}${s.source ? " · " + s.source : ""}</span></div></a>`;
+  if (!s) return "";
+  return `<button type="button" class="lcard${compact ? " compact" : ""}" data-slide="${s.id}">
+    <span class="lthumb"><img src="${libImg(s, true)}" alt="" loading="lazy"></span>
+    <span class="lbody"><em>${(LIB_CATS.find(c => c[0] === s.cat) || [, ""])[1]}</em><b>${s.title}</b></span></button>`;
 }
-function renderSlides(f) { $("#slide-grid").innerHTML = SLIDES.filter(s => f === "all" || s.cloud === f).map(s => slideCard(s)).join(""); }
-renderSlides("all");
+let libFilter = "all", libList = LIB;
+function renderLib() {
+  const q = ($("#lib-search").value || "").toLowerCase().trim();
+  libList = LIB.filter(s => (libFilter === "all" || s.cat === libFilter) &&
+    (!q || [s.title, s.sub || "", ...(s.points || []), ...(s.stats || []).flat(), ...(s.status || []).flat()].join(" ").toLowerCase().includes(q)));
+  $("#slide-grid").innerHTML = libList.length ? libList.map(s => slideCard(s)).join("") : `<p class="faq-none">No slides match. Try Ask for a Chapin-specific answer.</p>`;
+}
+$("#slide-filters").innerHTML = [["all", "All"], ...LIB_CATS].map(c => `<button class="fbtn${c[0] === "all" ? " on" : ""}" data-f="${c[0]}">${c[1]} <small>${c[0] === "all" ? LIB.length : LIB.filter(s => s.cat === c[0]).length}</small></button>`).join("");
 $("#slide-filters").addEventListener("click", e => {
   const b = e.target.closest(".fbtn"); if (!b) return;
-  $$(".fbtn").forEach(x => x.classList.toggle("on", x === b)); renderSlides(b.dataset.f);
+  $$(".fbtn").forEach(x => x.classList.toggle("on", x === b)); libFilter = b.dataset.f; renderLib();
 });
+$("#lib-search").addEventListener("input", () => {
+  if ($("#lib-search").value.trim() && libFilter !== "all") { libFilter = "all"; $$(".fbtn").forEach(x => x.classList.toggle("on", x.dataset.f === "all")); }
+  renderLib();
+});
+renderLib();
+
+/* Slide viewer */
+const sv = $("#sviewer"), svScrim = $("#sv-scrim");
+let svList = [], svIdx = 0, svReturn = null;
+function openSlide(id) {
+  const inLib = libList.some(s => s.id === id);
+  svList = inLib ? libList : [libById(id)]; svIdx = Math.max(0, svList.findIndex(s => s.id === id));
+  svReturn = document.activeElement; sv.hidden = false; svScrim.hidden = false; document.body.classList.add("noscroll");
+  showSlide(); $("#sv-close").focus();
+}
+function showSlide() {
+  const s = svList[svIdx]; if (!s) return;
+  $("#sv-img").src = libImg(s); $("#sv-img").alt = s.title;
+  const cat = (LIB_CATS.find(c => c[0] === s.cat) || [, ""])[1];
+  $("#sv-body").innerHTML = `<span class="sv-cat">${cat}</span><h3>${s.title}</h3>${s.sub ? `<p class="sv-sub">${s.sub}</p>` : ""}
+    ${s.stats ? `<div class="sv-stats">${s.stats.map(x => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>` : ""}
+    ${s.points && s.points.length ? `<ul class="sv-pts">${s.points.map(p => `<li>${p}</li>`).join("")}</ul>` : ""}
+    ${s.status ? `<div class="sv-status">${s.status.map(x => `<span><b>${x[0]}</b><em class="${/GA/.test(x[1]) ? "ga" : "soon"}">${x[1]}</em></span>`).join("")}</div>` : ""}
+    ${s.fl ? `<p class="sv-fl">${FL_NOTE}</p>` : ""}
+    <div class="sv-foot"><span>${libDeck(s)} \u00b7 slide ${s.id.split("-")[1]}</span>${svList.length > 1 ? `<span>${svIdx + 1} of ${svList.length}</span>` : ""}</div>
+    <button type="button" class="ask-inline sv-ask" data-q="${s.title.replace(/"/g, "&quot;")}"><span class="spark" aria-hidden="true"></span>Ask about this</button>`;
+  $("#sv-prev").hidden = $("#sv-next").hidden = svList.length < 2;
+}
+function closeSlide() { sv.hidden = true; svScrim.hidden = true; document.body.classList.remove("noscroll"); if (svReturn) svReturn.focus(); }
+$("#sv-close").addEventListener("click", closeSlide);
+svScrim.addEventListener("click", closeSlide);
+$("#sv-prev").addEventListener("click", () => { svIdx = (svIdx - 1 + svList.length) % svList.length; showSlide(); });
+$("#sv-next").addEventListener("click", () => { svIdx = (svIdx + 1) % svList.length; showSlide(); });
+sv.addEventListener("click", e => { if (e.target.closest(".sv-ask")) closeSlide(); });
+document.addEventListener("keydown", e => {
+  if (sv.hidden) return;
+  if (e.key === "Escape") { e.stopPropagation(); closeSlide(); }
+  if (e.key === "ArrowRight" && svList.length > 1) $("#sv-next").click();
+  if (e.key === "ArrowLeft" && svList.length > 1) $("#sv-prev").click();
+}, true);
+document.addEventListener("click", e => { const b = e.target.closest("[data-slide]"); if (b) { e.preventDefault(); openSlide(b.dataset.slide); } });
+
 $$(".segb").forEach(b => b.addEventListener("click", () => {
   $$(".segb").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-selected", x === b); });
   $("#pane-slides").hidden = b.dataset.pane !== "slides"; $("#pane-faq").hidden = b.dataset.pane !== "faq";

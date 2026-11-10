@@ -43,7 +43,7 @@ const MOCK = {
         return `<div class="dx ${cls}"><span>${f[0]}</span><b>${f[1]}</b><em>${c === 0 ? "Needs review" : c + "%"}</em></div>`; }).join("")}</div>`),
 
   integration: u => frame("integration", "Integration", `<div class="mint">
-      ${u.nodes.map((n, i) => `<div class="in n${i}">${n}</div>${i < u.nodes.length - 1 ? '<div class="ia"><i></i></div>' : ""}`).join("")}
+      ${u.nodes.map((n, i) => `<div class="inode n${i}">${n}</div>${i < u.nodes.length - 1 ? '<div class="ia"><i></i></div>' : ""}`).join("")}
       <div class="mok wide"><span class="chk"></span>${u.status}</div></div>`),
 
   console: u => frame("console", u.app, `<div class="mcon">
@@ -55,10 +55,20 @@ const MOCK = {
       <div class="mbar slackbar"><span class="dots"><i></i><i></i><i></i></span><span class="mapp">Slack · ${u.channel}</span></div>
       <div class="mbody"><div class="sk">${u.msgs.map(m => `<div class="skm"><span class="ska ${m[0] === "Salesforce" || m[0] === "Slackbot" ? "bot" : ""}">${m[0][0]}</span><div><b>${m[0]}</b><p>${m[1]}</p>${m[2] ? `<div class="skb">${m[2].split("|").map(x => `<span>${x}</span>`).join("")}</div>` : ""}</div></div>`).join("")}</div></div></div>`,
 
-  timeline: u => frame("timeline", "Your success plan", `<div class="mtl">
-      <div class="tlrow">${TIMELINE_NODES.map((n, i) => `<div class="tn ${i < u.active ? "done" : i === u.active ? "on" : ""}"><i></i><span>${n}</span></div>`).join("")}</div>
-      <div class="tlwho"><div class="w acq ${u.active <= 4 ? "on" : ""}"><b>Acquis</b><span>${["Kickoff", "Discovery sessions", "Weekly sprints & demos", "Cutover", "Hypercare", "Optional Evolve hours"][u.active]}</span></div>
-      <div class="w prem on"><b>Premier Success</b><span>${["Onboarding", "Expert Coaching", "Expert Coaching", "24/7 support", "1-hour response", "Health check & Success Review"][u.active]}</span></div></div></div>`)
+  plan: u => {
+    const P = [
+      ["Onboarding", "Align your goals with the platform", ["Kickoff with a Salesforce expert", "Goals: one customer view, faster orders, February season", "Success Path created"], "Book onboarding"],
+      ["Expert Coaching", "Unlimited 1-to-1 sessions", ["Sales agreement design review", "Omni-Channel routing for three queues", "Data migration readiness"], "Book a session"],
+      ["Support", "24/7, 1-hour response for business-stopping issues", ["Help Agent: instant answers", "Chat, phone or case", "Developer Support: up to 200 lines"], "Get help now"],
+      ["Training", "Instructor-led courses and workshops", ["Admin certification path", "Agentforce workshop", "25% off courses and certifications"], "Browse courses"],
+      ["Customer Success Score", "Adoption, expertise and technical health", ["Adoption: 82 / 100", "Expertise: 74 / 100", "Technical health: 91 / 100"], "Review with an expert"],
+      ["Success Review", "Update your Success Path", ["Wins since go-live", "Unused features to activate", "Phase two priorities"], "Schedule review"]
+    ][u.active];
+    return frame("plan", "Salesforce Help \u00b7 My Success Plan", `<div class="mplan">
+      <div class="pnav">${PLAN_NAV.map((n, i) => `<span class="${i === u.active ? "on" : ""}">${n}</span>`).join("")}</div>
+      <div class="pmain"><span class="ptier">Premier</span><b>${P[0]}</b><small>${P[1]}</small>
+        <ul>${P[2].map(x => `<li><span class="chk"></span>${x}</li>`).join("")}</ul><div class="pbtn2">${P[3]}</div></div></div>`);
+  }
 };
 
 function mockScreen(ui) { return (MOCK[ui.type] || (() => ""))(ui); }

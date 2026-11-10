@@ -41,6 +41,17 @@
   </div>
 </section>
 
+<!-- 0. What we heard -->
+<section id="whynow" class="whynow">
+  <div class="section">
+    <p class="kicker light" id="wn-kicker"></p>
+    <h2 id="wn-title"></h2>
+    <div class="wn-stats" id="wn-stats"></div>
+    <p class="wn-line" id="wn-line"></p>
+    <div class="wn-ctx" id="wn-ctx"></div>
+  </div>
+</section>
+
 <!-- 1. The journey -->
 <section id="journey" class="section">
   <p class="kicker">The journey</p>
@@ -89,7 +100,11 @@
 <section id="plan" class="section reveal">
   <p class="kicker">The plan</p>
   <h2>From signature to go-live in about 13 weeks</h2>
-  <p class="sub">Built with Acquis, your implementation partner, with Premier Success alongside from day one.</p>
+  <p class="sub">Our recommendation from the readback, and how we get there together.</p>
+  <div class="phases" id="phases"></div>
+  <h3 class="next-h">How we got here</h3>
+  <ol class="path" id="path"></ol>
+  <h3 class="next-h">The build: about 13 weeks with Acquis, Premier Success alongside</h3>
   <div class="gantt" id="gantt"></div>
   <p class="gnote" id="gantt-note"></p>
   <h3 class="next-h">What happens next</h3>
@@ -99,16 +114,15 @@
 <!-- 5. Go deeper -->
 <section id="deeper" class="section reveal">
   <p class="kicker">Go deeper</p>
-  <h2>Platform slides and answers to common questions</h2>
+  <h2>Explore the platform behind the journey</h2>
   <div class="seg" role="tablist" aria-label="Go deeper">
-    <button class="segb on" data-pane="slides" role="tab" aria-selected="true">Platform slides</button>
+    <button class="segb on" data-pane="slides" role="tab" aria-selected="true">Platform library</button>
     <button class="segb" data-pane="faq" role="tab" aria-selected="false">FAQs</button>
   </div>
   <div class="pane" id="pane-slides">
-    <div class="filters" id="slide-filters" role="group" aria-label="Filter slides">
-      <button class="fbtn on" data-f="all">All</button>
-      <button class="fbtn" data-f="mfg">Manufacturing Cloud</button>
-      <button class="fbtn" data-f="mkt">Marketing Cloud</button>
+    <div class="lib-bar">
+      <div class="filters" id="slide-filters" role="group" aria-label="Filter slides"></div>
+      <input class="faq-search lib-search" id="lib-search" type="search" placeholder="Search slides: warranty, rebates, Slackbot..." aria-label="Search slides">
     </div>
     <div class="slide-grid" id="slide-grid"></div>
   </div>
@@ -121,6 +135,16 @@
 <footer>
   <p>Prepared by your Salesforce account team for Chapin. Screens are illustrative, and customer names in them are fictional. Scope, timing and capabilities are confirmed in the final statement of work. Customer results are as reported by Salesforce and its customers. Product names and marks belong to their respective owners.</p>
 </footer>
+
+<!-- Slide viewer -->
+<div class="sv-scrim" id="sv-scrim" hidden></div>
+<div class="sviewer" id="sviewer" role="dialog" aria-modal="true" aria-label="Slide detail" hidden>
+  <button class="sv-x" id="sv-close" type="button" aria-label="Close">&times;</button>
+  <button class="sv-nav prev" id="sv-prev" type="button" aria-label="Previous slide">&lsaquo;</button>
+  <button class="sv-nav next" id="sv-next" type="button" aria-label="Next slide">&rsaquo;</button>
+  <div class="sv-img"><img id="sv-img" alt=""></div>
+  <div class="sv-body" id="sv-body"></div>
+</div>
 
 <!-- Ask drawer -->
 <div class="scrim" id="scrim" hidden></div>
@@ -143,6 +167,7 @@
 <script src="data.js"></script>
 <script src="why.js"></script>
 <script src="faqs.js"></script>
+<script src="library.js"></script>
 <script src="slides.js"></script>
 <script src="mocks.js"></script>
 <script src="render.js"></script>

@@ -1,63 +1,65 @@
 # Screenshot shot list
 
-Save each screenshot as `assets/screens/<file>.png`. Any step without a file keeps its illustrative mock screen, so you can add shots in any order.
+Each journey step shows `assets/screens/<file>.png` when that file exists, otherwise an illustrative mock. To swap in your own screenshot, save it with the file name below (PNG, about 1600 px wide, demo data only).
 
-**Specs:** PNG, about 1600 px wide, landscape (roughly 16:10). Crop out browser tabs and the address bar. Use a demo org with fictional contacts: no real emails, phone numbers or customer records.
+## 1. Attract (Marketing)
+| Step | File | Now showing |
+|---|---|---|
+| Mon 9:00: Brief the campaign in plain English | `mkt-campaign` | Product screenshot |
+| Mon 10:30: Approve an on-brand email | `mkt-content` | Product screenshot |
+| Show day: Capture Ray, then score him automatically | `mkt-scoring` | Product screenshot |
+| +48 hours: The journey follows up for you | `marketing-step4` | Mock (add a screenshot to replace) |
+| Price change: Tell every account at once | `marketing-step5` | Mock (add a screenshot to replace) |
+| Friday: See which shows paid off | `mkt-dashboard` | Product screenshot |
 
-★ = most important for the executive pitch.
+## 2. Win & plan (Sales)
+| Step | File | Now showing |
+|---|---|---|
+| 8:00 AM: Start the day on one screen | `sales-home` | Product screenshot |
+| 8:30 AM: Ask instead of searching | `sales-agentforce` | Product screenshot |
+| 10:00 AM: Build the line review | `sales-step3` | Mock (add a screenshot to replace) |
+| 11:30 AM: Check plan vs. actual | `sales-agreement` | Product screenshot |
+| 1:00 PM: Catch deviations before they hit margin | `sales-planning` | Product screenshot |
+| 2:00 PM: Answer "where's my order?" | `sales-step6` | Mock (add a screenshot to replace) |
+| 4:30 PM: Forecast rolls itself up | `sales-forecast` | Product screenshot |
 
-## 1. Attract (Marketing Cloud)
-| File | Capture |
-|---|---|
-| `marketing-1` ★ | Agentforce in Marketing: a plain-language prompt building a segment or campaign brief |
-| `marketing-2` | Email builder with a branded template and its approval status |
-| `marketing-3` | Lead record for a trade-show lead: source, score, owner |
-| `marketing-4` ★ | Flow/journey canvas: email → wait 48 hours → split on clicked / opened / no open |
-| `marketing-5` | Price-change email preview with old and new prices |
-| `marketing-6` | Marketing performance or campaign ROI dashboard |
+## 3. Fulfill (Orders & ERP)
+| Step | File | Now showing |
+|---|---|---|
+| 7:30 AM: Ray emails a PO | `mulesoft-step1` | Mock (add a screenshot to replace) |
+| 7:31 AM: AI reads every line | `mulesoft-step2` | Mock (add a screenshot to replace) |
+| 7:32 AM: Missing ship-to? It stops and asks | `mulesoft-step3` | Mock (add a screenshot to replace) |
+| 8:05 AM: Order created in your ERP | `mulesoft-step4` | Mock (add a screenshot to replace) |
+| 8:06 AM: Everyone sees the status | `mulesoft-step5` | Mock (add a screenshot to replace) |
 
-## 2. Win & plan (Manufacturing Cloud + Sales Cloud)
-| File | Capture |
-|---|---|
-| `sales-1` ★ | Rep home page: pipeline, today's tasks, Outlook-synced calendar |
-| `sales-2` ★ | Agentforce panel answering "What's my latest open line review?" |
-| `sales-3` | Opportunity (Line Review type) with the Products related list |
-| `sales-4` ★ | Sales Agreement: planned vs. actual by month |
-| `sales-5` | Account record: hierarchy, ERP ID, Orders related list |
-| `sales-6` | Manager view: Advanced Account Forecast or dashboard with stale-deal alerts |
-
-## 3. Fulfill (MuleSoft)
-| File | Capture |
-|---|---|
-| `mulesoft-1` | Order inbox email with a PO PDF attached (optional; the mock works well) |
-| `mulesoft-2` ★ | Document processing review: extracted PO fields with confidence scores |
-| `mulesoft-3` | Exception: missing ship-to flagged for review |
-| `mulesoft-4` | Integration flow or run history: Salesforce → MuleSoft → ERP, succeeded |
-| `mulesoft-5` | Account Orders list showing the newly booked order |
-
-## 4. Support (Service Cloud)
-| File | Capture |
-|---|---|
-| `service-1` | Service Console with the Omni-Channel status set to Available |
-| `service-2` ★ | Incoming call screen pop with account, cases, orders |
-| `service-3` ★ | Case with a photo attachment and suggested Knowledge articles |
-| `service-4` | Order status or tracking on the account in the console |
-| `service-5` | Knowledge article draft with approval/publish |
-| `service-6` | Service dashboard: cases closed, CSAT |
+## 4. Support (Service)
+| Step | File | Now showing |
+|---|---|---|
+| 8:00 AM: Set your status once | `service-step1` | Mock (add a screenshot to replace) |
+| 8:15 AM: The call pops with context | `service-console` | Product screenshot |
+| 10:00 AM: See the registered product | `service-asset` | Product screenshot |
+| 11:00 AM: Settle the warranty claim by rules | `service-warranty` | Product screenshot |
+| 12:30 PM: Answer "where's my shipment?" | `service-step5` | Mock (add a screenshot to replace) |
+| 2:30 PM: Turn the fix into knowledge | `service-step6` | Mock (add a screenshot to replace) |
+| 4:00 PM: Close the loop | `service-step7` | Mock (add a screenshot to replace) |
 
 ## 5. Connect (Slack)
-| File | Capture |
-|---|---|
-| `slack-1` ★ | Channel with a Salesforce alert message (record notification) |
-| `slack-2` | Thread reply resolving the alert |
-| `slack-3` ★ | Salesforce approval in Slack with Approve / Reject buttons |
-| `slack-4` | Slackbot updating a record from a plain-language request, asking to confirm |
+| Step | File | Now showing |
+|---|---|---|
+| 8:00 AM: Every key account gets a channel | `slack-channels` | Product screenshot |
+| 8:30 AM: Salesforce inside Slack | `slack-salesforce` | Product screenshot |
+| 9:16 AM: An exception lands in the channel | `slack-step3` | Mock (add a screenshot to replace) |
+| 9:20 AM: Resolve it in the thread | `slack-step4` | Mock (add a screenshot to replace) |
+| 11:00 AM: Approve without logging in | `slack-step5` | Mock (add a screenshot to replace) |
+| 2:00 PM: Update the record in plain language | `slack-step6` | Mock (add a screenshot to replace) |
 
-## 6. Succeed (Premier & Acquis)
-The built-in timeline shows who supports Chapin at each stage, so these are optional.
-| File | Capture |
-|---|---|
-| `premier-1` | "My Success Plan" page on Salesforce Help |
-| `premier-3` | Expert Coaching session catalog |
-| `premier-5` | Salesforce Help Agent or support case page |
-| `premier-6` | Customer Success Score or Success Review |
+## 6. Succeed (Premier Success)
+| Step | File | Now showing |
+|---|---|---|
+| Signature: Onboarding with Salesforce experts | `premier-step1` | Mock (add a screenshot to replace) |
+| During the build: Gut-check decisions with Expert Coaching | `premier-step2` | Mock (add a screenshot to replace) |
+| Go-live: 24/7 support from day one | `premier-step3` | Mock (add a screenshot to replace) |
+| Month 1: Train your people and your admin | `premier-step4` | Mock (add a screenshot to replace) |
+| Month 3: Health check and Customer Success Score | `premier-step5` | Mock (add a screenshot to replace) |
+| Month 6: Turn on what you already own | `premier-go` | Product screenshot |
+
